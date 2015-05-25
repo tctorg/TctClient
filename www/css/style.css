@@ -1,1 +1,39 @@
 /* Empty. Add your own CSS if you like */
+.divheader{
+	position: relative;
+	height: 250px;
+	background-color: blue;
+	color: white;
+}
+.divbody{
+	position: relative;
+	height: 150px;
+	background-color: black;
+	color: white;
+}
+
+.divregister{
+	position: relative;
+	padding-left: 100px;
+	padding-right: 100px;
+	top:-30px;
+}
+
+.date-card{
+	background-color: yellow;
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+.date-card-day{
+	background-color: yellow;
+	height: 70%
+}
+
+.date-card-month{
+	background-color: black;
+	height: 30%
+	color: white;
+}
+
