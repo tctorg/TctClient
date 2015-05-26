@@ -1,7 +1,7 @@
-<ion-view view-title="Browse">
+<ion-view view-title="Events">
   <ion-content>
-	
-	<div class="list card">
+
+    <div class="list card" ng-repeat="event in events">
 		<div class="divheader">
 			<div class="date-card">
 				<div class="date-card-day">
@@ -17,7 +17,7 @@
 			<div class="event-presenter-profile">
 			</div>
 			<div class="event-presenter-name">
-				<p>Samir Hanna</p>
+				<p>{{event.title}}</p>
 			</div>
 		</div>	
 		<div class="divbody">
@@ -28,10 +28,9 @@
 		    </p>
 		</div>
 		<div class="divregister">
-			<a class="button button-block button-energized" href="#/app/search">Register</a>
+			<a class="button button-block button-energized" href="#/app/events/{{event.id}}">Register</a>
 		</div>
 	</div>
 
-  	
   </ion-content>
 </ion-view>
