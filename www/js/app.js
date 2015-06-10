@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-    .state('app.events', {
+  .state('app.events', {
       url: "/events",
       views: {
         'menuContent': {
@@ -63,6 +63,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       'menuContent': {
         templateUrl: "templates/event.html",
         controller: 'EventCtrl'
+      }
+    }
+  })
+
+  .state('app.posts', {
+      url: "/posts",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/posts.html",
+          controller: 'PostsCtrl'
+        }
+      }
+    })
+
+  .state('app.post', {
+    url: "/posts/:postId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/post.html",
+        controller: 'PostCtrl'
       }
     }
   });
