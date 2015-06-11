@@ -44,7 +44,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('EventsCtrl', function($scope) {
+.controller('EventsCtrl', function($scope,Event) {
+
+  Event.getAll().success(function(data){
+        console.log(data.results);
+        $scope.events=data.results;
+    });
+
+
+/*
+$$hashKey: "object:19"
+content: "abababab"
+createdAt: "2015-06-11T08:49:32.733Z"
+objectId: "BLJTVgmTJt"
+updatedAt: "2015-06-11T08:49:32.733Z"
+*/
+/*
   $scope.events = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -63,6 +78,8 @@ angular.module('starter.controllers', [])
     // err.status will contain the status code
     });
   };
+
+*/  
 })
 
 .controller('EventCtrl', function($scope, $stateParams, $http) {
