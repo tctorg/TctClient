@@ -44,9 +44,9 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('EventsCtrl', function($scope,Event) {
+.controller('EventsCtrl', function($scope,Events) {
 
-  Event.getAll().success(function(data){
+  Events.getAll().success(function(data){
         console.log(data.results);
         $scope.events=data.results;
     });

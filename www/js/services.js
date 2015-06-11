@@ -3,7 +3,7 @@
  */
 angular.module('starter.services',[])
 
-.factory('Event',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
+.factory('Events',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
     return {
         getAll:function(){
             return $http.get('https://api.parse.com/1/classes/Todo',{
