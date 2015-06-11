@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -19,11 +19,22 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
+
+
+   $http.get('https://cors-test.appspot.com/test').then(function(resp) {
+    console.log('Success', resp);
+    // For JSON responses, resp.data contains the result
+    }, function(err) {
+      console.error('ERR', err);
+    // err.status will contain the status code
+    });
+
   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
+
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
@@ -42,9 +53,21 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+
+  $scope.doRefresh = function() {
+   $http.get('https://cors-test.appspot.com/test').then(function(resp) {
+    console.log('Success', resp);
+    // For JSON responses, resp.data contains the result
+    }, function(err) {
+      console.error('ERR', err);
+    // err.status will contain the status code
+    });
+  };
 })
 
-.controller('EventCtrl', function($scope, $stateParams) {
+.controller('EventCtrl', function($scope, $stateParams, $http) {
+
+
 })
 
 .controller('PostsCtrl', function($scope) {
