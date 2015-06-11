@@ -87,15 +87,14 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
 })
 
-.controller('PostsCtrl', function($scope) {
-  $scope.posts = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('PostsCtrl', function($scope, Posts) {
+
+  Posts.getAll().success(function(data){
+        console.log("PostsCtrl");
+        console.log(data.results);
+        $scope.posts=data.results;
+    });
+
 })
 
 .controller('PostCtrl', function($scope, $stateParams) {
