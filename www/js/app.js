@@ -85,6 +85,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'PostCtrl'
       }
     }
+  })
+
+  .state('app.posts.create', {
+    url: "/posts/create",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/post-create.html",
+        controller: 'PostsCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/events');
