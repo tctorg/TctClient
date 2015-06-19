@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="301136772">
+    <data-source source="LOCAL" name="Data Source" product="PostgreSQL" version="9.4.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4.1 (build 1201)" uuid="a24a8332-25ba-4449-894b-742f56954322">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://10.50.82.132:5432/tct</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfe6dfd3dfd4dfe6dfc6df80df9bdf9adf98df9c</user-password>
+      <libraries>
+        <library>
+          <url>jar://$PROJECT_DIR$/lib/postgresql-9.4-1201-jdbc41.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+
