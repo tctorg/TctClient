@@ -18,13 +18,23 @@ public class DBManager {
             Configuration.get("database.password"),
             4);
 
-    public static boolean addUser(User user) {
+    public static int addUser(User user) {
         String sql = "INSERT INTO \"user\" (\"username\", \"password\") "
                 + "VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
-        if (pool.execute(sql) == 1)
-            return true;
-        else
-            return false;
+        QueryResult queryResult = pool.execute(sql);
+        if (queryResult == null) {
+            return 0;
+        } else {
+            try {
+                if (queryResult.getResultSet().next()) {
+                    return queryResult.getResultSet().getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
     }
 
     public static User getUser(User user) {
@@ -43,7 +53,7 @@ public class DBManager {
             } else {
                 user1 = null;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             user1 = null;
         }
@@ -55,14 +65,14 @@ public class DBManager {
         String sql = "INSERT INTO \"register\" (\"eid\", \"uid\") select " +
                 String.valueOf(eventRegister.getEventId()) + ", " + String.valueOf(eventRegister.getUserId()) +
                 " from \"user\", \"events\" where not exists (select * from \"register\" where eid = " + String.valueOf(eventRegister.getEventId()) +
-                " and uid = " +  String.valueOf(eventRegister.getUserId()) + ") limit 1;";
-        if (pool.execute(sql) == 1)
-            return true;
-        else
+                " and uid = " + String.valueOf(eventRegister.getUserId()) + ") limit 1;";
+        if (pool.execute(sql) == null)
             return false;
+        else
+            return true;
     }
 
-    public static Events getEvents(){
+    public static Events getEvents() {
         String sql = "SELECT \"id\", \"name\" FROM \"events\"";
         ResultSet resultSet = pool.executeSelect(sql);
         if (resultSet == null)
@@ -77,14 +87,14 @@ public class DBManager {
                 event.setName(resultSet.getString(2).trim());
                 events.addEvents(event);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return events;
     }
 
-    public static List<Topic> getTopics(){
+    public static List<Topic> getTopics() {
         String sql = "select \"topic\".id, \"topic\".time, \"topic\".subject, \"user\".username from \"topic\" inner join \"user\" on \"user\".id = \"topic\".uid ORDER BY \"topic\".time DESC";
         ResultSet resultSet = pool.executeSelect(sql);
         if (resultSet == null)
@@ -103,15 +113,15 @@ public class DBManager {
                 topic.setUser(userInfo);
                 topics.add(topic);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return topics;
     }
 
-    public static Topic getCommentByTopic(String topicId){
-        String sql = "select \"topic\".id as tid, \"topic\".time as ttime, \"topic\".subject, \"topic\".content, \"user\".id as tuid, \"user\".username as tusername, \"c\".cid, \"c\".time as ctime, \"c\".comment, \"c\".uid as cuid, \"c\".username as cusername from \"topic\" inner join \"user\" on \"user\".id = \"topic\".uid inner join (select \"comment\".id as cid, \"comment\".tid, \"comment\".time, \"comment\".comment, \"user\".id as uid, \"user\".username from \"comment\" inner join \"user\" on \"user\".id = \"comment\".uid) as c on \"c\".tid = \"topic\".id where \"topic\".id = " + topicId + " ORDER BY \"c\".time DESC";
+    public static Topic getCommentByTopic(int topicId) {
+        String sql = "select \"topic\".id as tid, \"topic\".time as ttime, \"topic\".subject, \"topic\".content, \"user\".id as tuid, \"user\".username as tusername, \"c\".cid, \"c\".time as ctime, \"c\".comment, \"c\".uid as cuid, \"c\".username as cusername from \"topic\" inner join \"user\" on \"user\".id = \"topic\".uid inner join (select \"comment\".id as cid, \"comment\".tid, \"comment\".time, \"comment\".comment, \"user\".id as uid, \"user\".username from \"comment\" inner join \"user\" on \"user\".id = \"comment\".uid) as c on \"c\".tid = \"topic\".id where \"topic\".id = " + String.valueOf(topicId) + " ORDER BY \"c\".time DESC";
         ResultSet resultSet = pool.executeSelect(sql);
         if (resultSet == null)
             return null;
@@ -120,7 +130,7 @@ public class DBManager {
 
         try {
             while (resultSet.next()) {
-                if (topic == null){
+                if (topic == null) {
                     topic = new Topic();
 
                     UserInfo userInfo = new UserInfo();
@@ -146,10 +156,50 @@ public class DBManager {
 
                 topic.addComments(comment);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return topic;
+    }
+
+    public static int addTopic(Topic topic) {
+        String sql = "INSERT INTO \"topic\" (\"uid\", \"time\", \"subject\", \"content\") VALUES (" + topic.getUser().getId() + ", now(), '" + topic.getSubject() + "', '" + topic.getContent() + "')";
+        QueryResult queryResult = pool.execute(sql);
+        if (queryResult == null) {
+            return 0;
+        } else if (queryResult.getRows() == 0) {
+            return 0;
+        } else {
+            try {
+                if (queryResult.getResultSet().next()) {
+                    return queryResult.getResultSet().getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    }
+
+    public static int addComment(Comment comment, int topicId) {
+        String sql = "INSERT INTO \"comment\" (\"tid\", \"uid\", \"time\", \"comment\") VALUES ('" + topicId + "', '" + comment.getUser().getId() + "', now(), '" + comment.getContent() + "')";
+        QueryResult queryResult = pool.execute(sql);
+        if (queryResult == null) {
+            return 0;
+        } else if (queryResult.getRows() == 0) {
+            return 0;
+        } else {
+            try {
+                if (queryResult.getResultSet().next()) {
+                    return queryResult.getResultSet().getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
     }
 }

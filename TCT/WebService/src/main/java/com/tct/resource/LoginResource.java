@@ -41,7 +41,7 @@ public class LoginResource {
                 user1.getPassword().equals(user.getPassword())){
             result.setSucceed(true);
             result.setToken(request.getSession().getId());
-            SessionManager.getInstance().login(request);
+            SessionManager.getInstance().login(request, user1.getId());
         }
         return result;
     }

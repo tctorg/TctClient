@@ -31,8 +31,9 @@ public class SessionManager {
         }
     }
 
-    public void login(HttpServletRequest request){
+    public void login(HttpServletRequest request, int id){
         request.getSession().setAttribute("login", true);
+        request.getSession().setAttribute("id", id);
     }
 
     public boolean isLogin(HttpServletRequest request){
@@ -41,5 +42,12 @@ public class SessionManager {
             return false;
 
         return (boolean)o;
+    }
+
+    public int getUserId(HttpServletRequest request){
+        if (isLogin(request))
+            return (int)request.getSession().getAttribute("id");
+        else
+            return 0;
     }
 }

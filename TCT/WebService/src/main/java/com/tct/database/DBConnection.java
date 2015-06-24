@@ -1,9 +1,6 @@
 package com.tct.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by libin on 2015/5/19.
@@ -27,13 +24,18 @@ class DBConnection {
         }
     }
 
-    public int execute(String sql) {
-        Statement stmt;
-        int row;
+    public QueryResult execute(String sql) {
+        PreparedStatement stmt;
+        QueryResult queryResult;
         try {
-            stmt = mConnection.createStatement();
-            row = stmt.executeUpdate(sql);
+            stmt = mConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            int rows = stmt.executeUpdate();
             mConnection.commit();
+            ResultSet resultSet = stmt.getGeneratedKeys();
+
+            queryResult = new QueryResult();
+            queryResult.setRows(rows);
+            queryResult.setResultSet(resultSet);
         } catch (Exception e) {
             e.printStackTrace();
             try {
@@ -41,10 +43,10 @@ class DBConnection {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            row = 0;
+            queryResult = null;
         }
 
-        return row;
+        return queryResult;
     }
 
     public ResultSet executeSelect(String sql) {

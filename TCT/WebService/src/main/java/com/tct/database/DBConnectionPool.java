@@ -49,12 +49,12 @@ public class DBConnectionPool {
         return new DBConnection(connection);
     }
 
-    public int execute(String sql) {
+    public QueryResult execute(String sql) {
         DBConnection connection = getConnection();
-        int row = connection.execute(sql);
+        QueryResult queryResult = connection.execute(sql);
         mInUsePool.remove(connection);
         mPool.offer(connection);
-        return row;
+        return queryResult;
     }
 
     public ResultSet executeSelect(String sql) {

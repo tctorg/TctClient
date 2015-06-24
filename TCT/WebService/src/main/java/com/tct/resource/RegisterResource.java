@@ -38,10 +38,11 @@ public class RegisterResource {
         if (user == null)
             return loginResult;
 
-        if (DBManager.addUser(user)){
+        int id =  DBManager.addUser(user);
+        if (id  > 0){
             loginResult.setSucceed(true);
             loginResult.setToken(request.getSession().getId());
-            SessionManager.getInstance().login(request);
+            SessionManager.getInstance().login(request,id);
         }
 
         return loginResult;
