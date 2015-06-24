@@ -27,6 +27,7 @@ CREATE TABLE "topic" (
 CREATE TABLE "comment" (
   "id" serial NOT NULL,
   "tid" integer NOT NULL,
+  "uid" integer NOT NULL,
   "time" timestamp NOT NULL,
   "comment" character varying(5120) NOT NULL
 );

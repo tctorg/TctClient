@@ -1,12 +1,11 @@
 package com.tct.database;
 
-import com.tct.datamodel.Event;
-import com.tct.datamodel.EventRegister;
-import com.tct.datamodel.Events;
-import com.tct.datamodel.User;
+import com.tct.datamodel.*;
 import com.tct.utilities.Configuration;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by libin on 2015/5/19.
@@ -83,5 +82,74 @@ public class DBManager {
         }
 
         return events;
+    }
+
+    public static List<Topic> getTopics(){
+        String sql = "select \"topic\".id, \"topic\".time, \"topic\".subject, \"user\".username from \"topic\" inner join \"user\" on \"user\".id = \"topic\".uid ORDER BY \"topic\".time DESC";
+        ResultSet resultSet = pool.executeSelect(sql);
+        if (resultSet == null)
+            return null;
+
+        ArrayList<Topic> topics = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                UserInfo userInfo = new UserInfo();
+                userInfo.setUserName(resultSet.getString(4).trim());
+
+                Topic topic = new Topic();
+                topic.setId(resultSet.getInt(1));
+                topic.setTimestamp(resultSet.getTimestamp(2).getTime());
+                topic.setSubject(resultSet.getString(3));
+                topic.setUser(userInfo);
+                topics.add(topic);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return topics;
+    }
+
+    public static Topic getCommentByTopic(String topicId){
+        String sql = "select \"topic\".id as tid, \"topic\".time as ttime, \"topic\".subject, \"topic\".content, \"user\".id as tuid, \"user\".username as tusername, \"c\".cid, \"c\".time as ctime, \"c\".comment, \"c\".uid as cuid, \"c\".username as cusername from \"topic\" inner join \"user\" on \"user\".id = \"topic\".uid inner join (select \"comment\".id as cid, \"comment\".tid, \"comment\".time, \"comment\".comment, \"user\".id as uid, \"user\".username from \"comment\" inner join \"user\" on \"user\".id = \"comment\".uid) as c on \"c\".tid = \"topic\".id where \"topic\".id = " + topicId + " ORDER BY \"c\".time DESC";
+        ResultSet resultSet = pool.executeSelect(sql);
+        if (resultSet == null)
+            return null;
+
+        Topic topic = null;
+
+        try {
+            while (resultSet.next()) {
+                if (topic == null){
+                    topic = new Topic();
+
+                    UserInfo userInfo = new UserInfo();
+                    userInfo.setId(resultSet.getInt(5));
+                    userInfo.setUserName(resultSet.getString(6).trim());
+
+                    topic.setId(resultSet.getInt(1));
+                    topic.setTimestamp(resultSet.getTimestamp(2).getTime());
+                    topic.setSubject(resultSet.getString(3));
+                    topic.setContent(resultSet.getString(4));
+                    topic.setUser(userInfo);
+                }
+
+                Comment comment = new Comment();
+                comment.setId(resultSet.getInt(7));
+                comment.setTimestamp(resultSet.getTimestamp(8).getTime());
+                comment.setContent(resultSet.getString(9));
+
+                UserInfo userInfo = new UserInfo();
+                userInfo.setId(resultSet.getInt(10));
+                userInfo.setUserName(resultSet.getString(11).trim());
+                comment.setUser(userInfo);
+
+                topic.addComments(comment);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return topic;
     }
 }
