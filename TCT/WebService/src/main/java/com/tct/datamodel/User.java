@@ -1,35 +1,38 @@
 package com.tct.datamodel;
 
 /**
- * Created by libin on 15/6/14.
+ * Created with IntelliJ IDEA.
+ * Login: binl
+ * Date: 6/24/15
+ * Time: 10:35 AM
+ * To change this template use File | Settings | File Templates.
  */
 public class User {
-    public String getUsername() {
-        return username;
+    int id = 0;
+    String name = "";
+    Avatar avatar = new Avatar();
+
+    public Avatar getAvatar() {
+        return avatar;
     }
 
-    public String getPassword() {
-        return password;
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public int getId() {
+        return id;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    private String username;
-    private String password;
-    private int id;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getName() {
+        return name;
+    }
 
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
 }

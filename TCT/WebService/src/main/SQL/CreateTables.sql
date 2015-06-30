@@ -1,7 +1,15 @@
+DROP TABLE "user";
+DROP TABLE "comment";
+DROP TABLE "events";
+DROP TABLE "register";
+DROP TABLE "topic";
+DROP TABLE "avatar";
+
 CREATE TABLE "user" (
   "id" serial NOT NULL,
-  "username" character(64) NOT NULL,
-  "password" character(128) NOT NULL
+  "username" character varying(64) NOT NULL,
+  "password" character(128) NOT NULL,
+  "aid" integer NOT NULL DEFAULT '0'
 );
 
 CREATE TABLE "events" (
@@ -30,4 +38,10 @@ CREATE TABLE "comment" (
   "uid" integer NOT NULL,
   "time" timestamp NOT NULL,
   "comment" character varying(5120) NOT NULL
+);
+
+CREATE TABLE "avatar" (
+  "id" serial NOT NULL,
+  "uid" integer NOT NULL,
+  "path" character varying(256) NOT NULL
 );

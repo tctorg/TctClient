@@ -67,4 +67,5 @@ class DBConnection {
         }
 
         return resultSet;
-    }}
+    }
+}

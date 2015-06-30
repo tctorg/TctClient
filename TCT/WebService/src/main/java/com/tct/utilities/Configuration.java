@@ -18,7 +18,7 @@ public class Configuration {
 
     }
 
-    public static void load(String path){
+    public static void load(String path) {
         File file = new File(path);
         try {
             mInstance.mProperties.load(new FileInputStream(file));

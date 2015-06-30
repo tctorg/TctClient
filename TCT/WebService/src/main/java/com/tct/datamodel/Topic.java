@@ -1,12 +1,11 @@
 package com.tct.datamodel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: binl
+ * Login: binl
  * Date: 6/24/15
  * Time: 10:34 AM
  * To change this template use File | Settings | File Templates.
@@ -50,11 +49,11 @@ public class Topic {
         this.id = id;
     }
 
-    public UserInfo getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserInfo user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -66,5 +65,5 @@ public class Topic {
         this.subject = subject;
     }
 
-    UserInfo user;
+    User user;
 }

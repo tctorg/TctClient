@@ -5,6 +5,7 @@ package com.tct.datamodel;
  */
 public class Event {
     private int id;
+    private String name;
 
     public int getId() {
         return id;
@@ -21,6 +22,4 @@ public class Event {
     public void setName(String name) {
         this.name = name;
     }
-
-    private String name;
 }

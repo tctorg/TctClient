@@ -3,11 +3,11 @@ package com.tct.datamodel;
 /**
  * Created with IntelliJ IDEA.
  * User: binl
- * Date: 6/24/15
- * Time: 10:35 AM
+ * Date: 6/30/15
+ * Time: 12:35 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UserInfo {
+public class Avatar {
     int id;
 
     public int getId() {
@@ -16,15 +16,5 @@ public class UserInfo {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    String userName;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 }

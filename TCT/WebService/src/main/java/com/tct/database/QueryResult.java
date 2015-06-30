@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 /**
  * Created with IntelliJ IDEA.
- * User: binl
+ * Login: binl
  * Date: 6/24/15
  * Time: 1:00 PM
  * To change this template use File | Settings | File Templates.

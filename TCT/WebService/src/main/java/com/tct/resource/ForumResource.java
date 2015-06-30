@@ -2,6 +2,7 @@ package com.tct.resource;
 
 import com.tct.SessionManager;
 import com.tct.database.DBManager;
+import com.tct.datamodel.APIResult;
 import com.tct.datamodel.Comment;
 import com.tct.datamodel.Topic;
 
@@ -9,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: binl
+ * Login: binl
  * Date: 6/24/15
  * Time: 10:33 AM
  * To change this template use File | Settings | File Templates.
@@ -28,7 +30,7 @@ public class ForumResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Topic> getTopics() {
         if (!SessionManager.getInstance().isLogin(request))
-            return null;
+            return new ArrayList<>();
 
         return DBManager.getTopics();
     }
@@ -37,6 +39,9 @@ public class ForumResource {
     @Path("topic/{id}/comments")
     @Produces(MediaType.APPLICATION_JSON)
     public Topic getComments(@PathParam("id") int id) {
+        if (!SessionManager.getInstance().isLogin(request))
+            return null;
+
         return DBManager.getCommentByTopic(id);
     }
 
@@ -44,35 +49,43 @@ public class ForumResource {
     @Path("topic")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Topic addTopic(Topic topic) {
-        int uid = SessionManager.getInstance().getUserId(request);
-        if (uid <= 0)
-            return null;
+    public APIResult addTopic(Topic topic) {
+        APIResult result = new APIResult();
+        result.setResult(false);
 
-        topic.getUser().setId(uid);
+        if (!SessionManager.getInstance().isLogin(request))
+            return result;
+
+        topic.getUser().setId(SessionManager.getInstance().getUserId(request));
         int id = DBManager.addTopic(topic);
-        if (id <= 0)
-            return null;
+        if (id == 0)
+            return result;
 
         topic.setId(id);
-        return topic;
+        result.setResult(true);
+
+        return result;
     }
 
     @POST
     @Path("topic/{id}/comment")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Comment addComment(@PathParam("id") int topicId, Comment comment) {
-        int uid = SessionManager.getInstance().getUserId(request);
-        if (uid <= 0)
-            return null;
+    public APIResult addComment(@PathParam("id") int topicId, Comment comment) {
+        APIResult result = new APIResult();
+        result.setResult(false);
 
-        comment.getUser().setId(uid);
+        if (!SessionManager.getInstance().isLogin(request))
+            return result;
+
+        comment.getUser().setId(SessionManager.getInstance().getUserId(request));
         int id = DBManager.addComment(comment, topicId);
         if (id <= 0)
-            return null;
+            return result;
 
         comment.setId(id);
-        return comment;
+        result.setResult(true);
+
+        return result;
     }
 }

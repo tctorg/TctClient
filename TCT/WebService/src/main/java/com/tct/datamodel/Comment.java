@@ -2,7 +2,7 @@ package com.tct.datamodel;
 
 /**
  * Created with IntelliJ IDEA.
- * User: binl
+ * Login: binl
  * Date: 6/24/15
  * Time: 11:00 AM
  * To change this template use File | Settings | File Templates.
@@ -11,13 +11,13 @@ public class Comment {
     int id;
     String content;
     long timestamp;
-    UserInfo user;
+    User user;
 
-    public UserInfo getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserInfo user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
