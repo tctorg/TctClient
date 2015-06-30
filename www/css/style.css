@@ -40,3 +40,15 @@
 	color: white;
 }
 
+.seats{
+	position: relative;
+	height: 150px;
+	background-image: url("../img/event_banner.png");
+	color: white;
+}
+
+.available{
+	background-color: yellow;
+	height: 30px;
+}
+
