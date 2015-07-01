@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .divheader{
 	position: relative;
-	height: 250px;
+	height: 200pt;
 	background-image: url("../img/event_banner.png");
 	color: white;
 }
@@ -24,9 +24,10 @@
 
 .date-card{
 	background-color: yellow;
-	width: 60px;
-	height: 60px;
+	width: 60pt;
+	height: 60pt;
 	float: left;
+	margin-left: 10pt;
 }
 
 .date-card-day{
@@ -34,10 +35,16 @@
 	height: 70%
 }
 
+.date-card-day h2{
+	color: black;
+	font-size: 34pt;
+	margin-top: 0pt;
+	margin-left: 11pt;
+}
+
 .date-card-month{
 	background-color: black;
 	height: 30%
-	color: white;
 }
 
 .seats{
@@ -52,3 +59,33 @@
 	height: 30px;
 }
 
+.date-card-month p{
+  margin-left: 15pt;
+  color: white;
+}
+
+.avatar-div{
+  background-color: pink;
+  margin-left: 10pt;
+  margin-top: 100pt;
+}
+
+.avatar-div .avatar-card{
+  float: left;
+  width: 60pt;
+  height: 60pt;
+}
+
+.event-title{
+	height: 20pt;
+}
+
+.event-presenter-name{
+	height: 20pt;
+}
+
+.tct-card{
+  margin-left: 10pt;
+  margin-right: 10pt;
+  background-color: pink;
+}
