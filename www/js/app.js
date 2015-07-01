@@ -87,8 +87,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('app.posts.create', {
-    url: "/posts/create",
+  .state('app.createpost', {
+    url: "/createpost",
     views: {
       'menuContent': {
         templateUrl: "templates/post-create.html",

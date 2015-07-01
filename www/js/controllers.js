@@ -97,7 +97,7 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
   $scope.createPost = function() {
     console.log("createPost");
-    // $state.go('');
+    //$state.go('app.createpost');
   };
 
 })
