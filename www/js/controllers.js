@@ -87,7 +87,7 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
 })
 
-.controller('PostsCtrl', function($scope, Posts) {
+.controller('PostsCtrl', function($scope, $state, Posts) {
 
   Posts.getAll().success(function(data){
         console.log("PostsCtrl");
@@ -95,7 +95,12 @@ updatedAt: "2015-06-11T08:49:32.733Z"
         $scope.posts=data.results;
     });
 
+  $scope.createPost = function() {
+    console.log("createPost");
+    // $state.go('');
+  };
+
 })
 
-.controller('PostCtrl', function($scope, $stateParams) {
+.controller('PostCtrl', function($scope, $state, $stateParams) {
 });
