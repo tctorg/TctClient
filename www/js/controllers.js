@@ -102,11 +102,17 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
 })
 
-.controller('PostCtrl', function($scope, $state, $stateParams) {
+.controller('PostCtrl', function($scope, $state, $stateParams, Posts) {
+
+  $scope.post={};
 
   $scope.onCreatePost = function() {
-    console.log("onCreatePost");
-    $state.go('app.posts');
+    console.log("onCreatePost" + $scope.post.title);
+
+    Posts.create({content:$scope.post.title}).success(function(data){
+      $state.go('app.posts');
+    });
+
   };
 
   $scope.onCancelPost = function() {

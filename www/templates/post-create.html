@@ -13,12 +13,12 @@
         <div>
             <ion-list>
                 <li class="item item-input item-stacked-label">
-                    <textarea type="text" placeholder="Enter your title here..." name="title" rows="2"></textarea>
+                    <textarea type="text" placeholder="Enter your title here..." name="title" rows="2" ng-model="post.title" required></textarea>
                 </li>
                 <br/>
                 <br/>
                 <li class="item item-input item-stacked-label">
-                    <textarea type="text" placeholder="Enter your content here..." name="content" rows="20"></textarea>
+                    <textarea type="text" placeholder="Enter your content here..." name="content" rows="20" ng-model="post.content"></textarea>
                 </li>
             </ion-list>
         </div>
