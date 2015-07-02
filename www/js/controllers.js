@@ -118,6 +118,12 @@ updatedAt: "2015-06-11T08:49:32.733Z"
     Posts.like(post.objectId);
   };
 
+  $scope.gotoPostDetail = function(post) {
+    console.log("gotoPostDetail");
+    $state.go('#/app/posts/' + post.objectId);
+  };
+  
+
 })
 
 .controller('PostCtrl', function($scope, $state, $stateParams, Posts) {
