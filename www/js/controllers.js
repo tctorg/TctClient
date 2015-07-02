@@ -97,10 +97,21 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
   $scope.createPost = function() {
     console.log("createPost");
-    //$state.go('app.createpost');
+    $state.go('createpost');
   };
 
 })
 
 .controller('PostCtrl', function($scope, $state, $stateParams) {
+
+  $scope.onCreatePost = function() {
+    console.log("onCreatePost");
+    $state.go('app.posts');
+  };
+
+  $scope.onCancelPost = function() {
+    console.log("onCancelPost");
+    $state.go('app.posts');
+  };
+
 });

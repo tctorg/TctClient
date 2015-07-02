@@ -30,6 +30,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'AppCtrl'
   })
 
+  .state('createpost', {
+    url: "/createpost",
+    templateUrl: "templates/post-create.html",
+    controller: 'PostCtrl'
+  })
+
   .state('app.search', {
     url: "/search",
     views: {
@@ -83,16 +89,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       'menuContent': {
         templateUrl: "templates/post.html",
         controller: 'PostCtrl'
-      }
-    }
-  })
-
-  .state('app.createpost', {
-    url: "/createpost",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/post-create.html",
-        controller: 'PostsCtrl'
       }
     }
   });
