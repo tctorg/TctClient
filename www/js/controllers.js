@@ -87,7 +87,7 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
 })
 
-.controller('PostsCtrl', function($scope, $state, Posts) {
+.controller('PostsCtrl', function($scope, $state, $ionicModal, Posts) {
 
   Posts.getAll().success(function(data){
         console.log("PostsCtrl");
@@ -95,9 +95,26 @@ updatedAt: "2015-06-11T08:49:32.733Z"
         $scope.posts=data.results;
     });
 
+  // Create comment modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/comment-create.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalcomment = modal;
+  });
+
+
   $scope.createPost = function() {
     console.log("createPost");
     $state.go('createpost');
+  };
+
+  $scope.createComment = function() {
+    console.log("createComment");
+    $scope.modalcomment.show();
+  };
+
+  $scope.createLike = function() {
+    console.log("createLike");
   };
 
 })
