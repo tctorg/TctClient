@@ -8,14 +8,18 @@
     </div>
 
     <ion-content>
+        <div class="h2 title">Create your post here...</div>
+
         <div>
             <ion-list>
                 <li class="item item-input item-stacked-label">
-                    <textarea type="text" placeholder="Start typing..." name="content" rows="10"></textarea>
+                    <textarea type="text" placeholder="Enter your title here..." name="title" rows="2"></textarea>
                 </li>
-                <ion-button class="button button-block button-positive" ng-click="create()">
-                    create
-                </ion-button>
+                <br/>
+                <br/>
+                <li class="item item-input item-stacked-label">
+                    <textarea type="text" placeholder="Enter your content here..." name="content" rows="20"></textarea>
+                </li>
             </ion-list>
         </div>
     </ion-content>
