@@ -108,13 +108,14 @@ updatedAt: "2015-06-11T08:49:32.733Z"
     $state.go('createpost');
   };
 
-  $scope.createComment = function() {
+  $scope.createComment = function(post) {
     console.log("createComment");
     $scope.modalcomment.show();
   };
 
-  $scope.createLike = function() {
+  $scope.createLike = function(post) {
     console.log("createLike");
+    Posts.like(post.objectId);
   };
 
 })

@@ -98,6 +98,12 @@ angular.module('starter.services',[])
                     'Content-Type':'application/json'
                 }
             });
+        },
+        comment:function(id, userId, data){
+            console.log("Posts.comment");
+        },
+        like:function(id,userId){
+            console.log("Posts.like " + id);
         }
     }
 }]).value('PARSE_CREDENTIALS',{
