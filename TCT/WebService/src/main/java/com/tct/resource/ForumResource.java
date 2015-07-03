@@ -49,43 +49,34 @@ public class ForumResource {
     @Path("topic")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public APIResult addTopic(Topic topic) {
-        APIResult result = new APIResult();
-        result.setResult(false);
-
+    public Topic addTopic(Topic topic) {
         if (!SessionManager.getInstance().isLogin(request))
-            return result;
+            return null;
 
         topic.getUser().setId(SessionManager.getInstance().getUserId(request));
         int id = DBManager.addTopic(topic);
         if (id == 0)
-            return result;
+            return null;
 
         topic.setId(id);
-        result.setResult(true);
-
-        return result;
+        return topic;
     }
 
     @POST
     @Path("topic/{id}/comment")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public APIResult addComment(@PathParam("id") int topicId, Comment comment) {
-        APIResult result = new APIResult();
-        result.setResult(false);
-
+    public Comment addComment(@PathParam("id") int topicId, Comment comment) {
         if (!SessionManager.getInstance().isLogin(request))
-            return result;
+            return null;
 
         comment.getUser().setId(SessionManager.getInstance().getUserId(request));
         int id = DBManager.addComment(comment, topicId);
         if (id <= 0)
-            return result;
+            return null;
 
         comment.setId(id);
-        result.setResult(true);
 
-        return result;
+        return comment;
     }
 }

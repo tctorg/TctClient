@@ -4,16 +4,16 @@ package com.tct.datamodel;
  * Created by libin on 15/6/14.
  */
 public class Login {
-    private String username;
-    private String password;
-
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    private String name = "";
+    private String password = "";
 
     public String getPassword() {
         return password;

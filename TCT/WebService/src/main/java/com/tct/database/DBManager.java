@@ -38,7 +38,7 @@ public class DBManager {
     }
 
     public static User getUser(Login login) {
-        String sql = "SELECT \"id\", \"username\", \"aid\" FROM \"user\" WHERE \"username\" = '" + login.getUsername() + "' AND \"password\" = '" + login.getPassword() + "'";
+        String sql = "SELECT \"id\", \"username\", \"aid\" FROM \"user\" WHERE \"username\" = '" + login.getName() + "' AND \"password\" = '" + login.getPassword() + "'";
         ResultSet resultSet = pool.executeSelect(sql);
         if (resultSet == null)
             return null;
@@ -151,19 +151,31 @@ public class DBManager {
         }
     }
 
-    public static boolean addEventRegister(User user, int eventId) {
+    public static int addEventRegister(User user, int eventId) {
         String sql = "INSERT INTO \"register\" (\"eid\", \"uid\") select " +
                 String.valueOf(eventId) + ", " + String.valueOf(user.getId()) +
-                " from \"user\", \"events\" where not exists (select * from \"register\" where eid = " + String.valueOf(eventId) +
+                " from \"user\", \"events\" where exists(select \"id\" from \"user\" where id = " + String.valueOf(user.getId()) +
+                ") and exists(select \"id\" from \"events\" where id = " + String.valueOf(eventId) +
+                ") and not exists (select \"eid\" from \"register\" where eid = " + String.valueOf(eventId) +
                 " and uid = " + String.valueOf(user.getId()) + ") limit 1;";
-        if (pool.execute(sql) == null)
-            return false;
-        else
-            return true;
+        QueryResult queryResult = pool.execute(sql);
+        if (queryResult == null) {
+            return 0;
+        } else {
+            try {
+                if (queryResult.getResultSet().next()) {
+                    return queryResult.getResultSet().getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
     }
 
     public static List<Event> getEvents() {
-        String sql = "SELECT \"id\", \"name\" FROM \"events\"";
+        String sql = "SELECT \"id\", \"name\", \"topic\", \"content\", \"seat_max\" FROM \"events\"";
         ResultSet resultSet = pool.executeSelect(sql);
         if (resultSet == null)
             return null;
@@ -175,6 +187,9 @@ public class DBManager {
                 Event event = new Event();
                 event.setId(resultSet.getInt(1));
                 event.setName(resultSet.getString(2).trim());
+                event.setTopic(resultSet.getString(3).trim());
+                event.setContent(resultSet.getString(4).trim());
+                event.setSeat(resultSet.getInt(5));
                 events.add(event);
             }
         } catch (Exception e) {
@@ -182,6 +197,26 @@ public class DBManager {
         }
 
         return events;
+    }
+
+    public static int addEvent(Event event){
+        String sql = "INSERT INTO \"events\" (\"name\", \"topic\", \"content\", \"seat_max\")\n" +
+                "VALUES ('" + event.getName() + "', '" + event.getTopic() + "', '" + event.getContent() + "', '" + String.valueOf(event.getSeat()) + "');";
+
+        QueryResult queryResult = pool.execute(sql);
+        if (queryResult == null) {
+            return 0;
+        } else {
+            try {
+                if (queryResult.getResultSet().next()) {
+                    return queryResult.getResultSet().getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
     }
 
     public static List<Topic> getTopics() {

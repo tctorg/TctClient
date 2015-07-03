@@ -8,8 +8,8 @@ package com.tct.datamodel;
  * To change this template use File | Settings | File Templates.
  */
 public class UserRegister {
-    String name;
-    String password;
+    String name = "";
+    String password = "";
 
     public String getName() {
         return name;

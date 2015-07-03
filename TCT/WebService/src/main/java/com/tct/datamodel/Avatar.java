@@ -8,7 +8,7 @@ package com.tct.datamodel;
  * To change this template use File | Settings | File Templates.
  */
 public class Avatar {
-    int id;
+    int id = 0;
 
     public int getId() {
         return id;

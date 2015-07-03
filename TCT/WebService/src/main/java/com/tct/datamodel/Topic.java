@@ -11,11 +11,12 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Topic {
-    String subject;
-    long timestamp;
-    int id;
-    String content;
+    String subject = "";
+    long timestamp = 0;
+    int id = 0;
+    String content = "";
     List<Comment> comments = new ArrayList<>();
+    User user = new User();
 
     public List<Comment> getComments() {
         return comments;
@@ -64,6 +65,4 @@ public class Topic {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-
-    User user;
 }

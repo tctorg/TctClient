@@ -33,6 +33,26 @@ public class EventResource {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Event addEvent(Event event){
+        if (!SessionManager.getInstance().isLogin(request))
+            return null;
+
+        if (event == null)
+            return null;
+
+        int id = DBManager.addEvent(event);
+
+        if (id > 0){
+            event.setId(id);
+            return event;
+        } else {
+            return null;
+        }
+    }
+
+    @POST
     @Path("{id}/register")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,7 +64,7 @@ public class EventResource {
             return result;
 
         User user = DBManager.getUser(SessionManager.getInstance().getUserId(request));
-        if (DBManager.addEventRegister(user, id)) {
+        if (DBManager.addEventRegister(user, id) > 0) {
             result.setResult(true);
         }
 
