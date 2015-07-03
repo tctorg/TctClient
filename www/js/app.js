@@ -36,6 +36,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'PostCtrl'
   })
 
+  .state('landing', {
+    url: "/landing",
+    templateUrl: "templates/landing.html",
+    controller: 'AppCtrl'
+  })
+
   .state('app.search', {
     url: "/search",
     views: {
