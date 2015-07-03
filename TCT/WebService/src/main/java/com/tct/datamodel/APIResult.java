@@ -8,7 +8,7 @@ package com.tct.datamodel;
  * To change this template use File | Settings | File Templates.
  */
 public class APIResult {
-    boolean result;
+    boolean result = false;
 
     public boolean isResult() {
         return result;

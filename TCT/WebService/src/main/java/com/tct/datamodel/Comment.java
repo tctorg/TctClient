@@ -8,10 +8,10 @@ package com.tct.datamodel;
  * To change this template use File | Settings | File Templates.
  */
 public class Comment {
-    int id;
-    String content;
-    long timestamp;
-    User user;
+    int id = 0;
+    String content = "";
+    long timestamp = 0;
+    User user = new User();
 
     public User getUser() {
         return user;

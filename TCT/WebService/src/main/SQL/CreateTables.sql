@@ -14,7 +14,9 @@ CREATE TABLE "user" (
 
 CREATE TABLE "events" (
   "id" serial NOT NULL,
-  "name" character(128) NOT NULL,
+  "name" character varying(128) NOT NULL,
+  "topic" character varying(256) NOT NULL,
+  "content" character varying(1024) NOT NULL,
   "seat_max" smallint NOT NULL DEFAULT '0'
 );
 
