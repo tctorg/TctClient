@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $state, $ionicModal, $timeout, $http, User) {
   // Form data for the login modal
   $scope.loginData = {};
-
+  $scope.signinData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/logout.html', {
@@ -37,15 +37,19 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
 
-    User.getAll().success(function(data){
-        console.log(data.results);
+    User.login({name: $scope.loginData.username, password:$scope.loginData.password}).success(function(data){
+      $state.go('app.events',$state.$current.params, {reload: true});
     });
 
-    $state.go("app.events");
   };
 
   $scope.doSignin = function(){
-    $state.go("app.events");
+    console.log('Doing Signin', $scope.signinData);
+
+    User.signin({name: $scope.signinData.username, password:$scope.signinData.password}).success(function(data){
+      $state.go('app.events',$state.$current.params, {reload: true});
+    });
+
   };
 
 })
@@ -140,7 +144,7 @@ updatedAt: "2015-06-11T08:49:32.733Z"
     console.log("onCreatePost" + $scope.post.subject);
 
     Posts.create({subject: $scope.post.subject, content:$scope.post.content}).success(function(data){
-      $state.go('app.posts');
+      $state.go('app.posts',$state.$current.params, {reload: true});
     });
 
   };

@@ -108,7 +108,7 @@ angular.module('starter.services',[])
 .factory('User',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
     return {
         getAll:function(){
-            return $http.get('https://api.parse.com/1/classes/Todo',{
+            return $http.get(constants.baseApi+'/User',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -116,7 +116,7 @@ angular.module('starter.services',[])
             });
         },
         get:function(id){
-            return $http.get('https://api.parse.com/1/classes/Todo/'+id,{
+            return $http.get(constants.baseApi+'/User/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -124,7 +124,7 @@ angular.module('starter.services',[])
             });
         },
         delete:function(id){
-            return $http.delete('https://api.parse.com/1/classes/Todo/'+id,{
+            return $http.delete(constants.baseApi+'/User/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -132,8 +132,8 @@ angular.module('starter.services',[])
                 }
             });
         },
-        register:function(data){
-            return $http.post('https://api.parse.com/1/classes/Todo',data,{
+        signin:function(data){
+            return $http.post(constants.baseApi+'/User',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -142,7 +142,7 @@ angular.module('starter.services',[])
             });
         },
         login: function(data){
-            return $http.post('https://api.parse.com/1/classes/Todo',data,{
+            return $http.post(constants.baseApi+'/Login',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
