@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
+.controller('AppCtrl', function($scope, $state, $ionicModal, $timeout, $http) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -19,16 +19,10 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
+  };
 
-
-   $http.get('https://cors-test.appspot.com/test').then(function(resp) {
-    console.log('Success', resp);
-    // For JSON responses, resp.data contains the result
-    }, function(err) {
-      console.error('ERR', err);
-    // err.status will contain the status code
-    });
-
+  $scope.signin = function(){
+    $state.go("signin");
   };
 
   // Perform the login action when the user submits the login form
