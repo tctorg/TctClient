@@ -21,6 +21,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.doLogout = function() {
+    $scope.logoutModal.hide();
     $state.go("landing");
   };
 
