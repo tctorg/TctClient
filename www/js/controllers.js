@@ -136,16 +136,16 @@ updatedAt: "2015-06-11T08:49:32.733Z"
 
   $scope.post={};
 
-  $scope.onCreatePost = function() {
-    console.log("onCreatePost" + $scope.post.title);
+  $scope.doCreatePost = function() {
+    console.log("onCreatePost" + $scope.post.subject);
 
-    Posts.create({content:$scope.post.title}).success(function(data){
+    Posts.create({subject: $scope.post.subject, content:$scope.post.content}).success(function(data){
       $state.go('app.posts');
     });
 
   };
 
-  $scope.onCancelPost = function() {
+  $scope.doCancelPost = function() {
     console.log("onCancelPost");
     $state.go('app.posts');
   };

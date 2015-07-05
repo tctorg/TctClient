@@ -2,9 +2,9 @@
 
 <ion-view view-title="Create Post">
     <div class="bar bar-header">
-      <button class="button button-clear button-positive" ng-click="onCancelPost()">Cancel</button>
+      <button class="button button-clear button-positive" ng-click="doCancelPost()">Cancel</button>
       <div class="h1 title">Create post</div>
-      <button class="button button-clear button-positive" ng-click="onCreatePost()">Post</button>
+      <button class="button button-clear button-positive" ng-click="doCreatePost()">Post</button>
     </div>
 
     <ion-content>
@@ -13,7 +13,7 @@
         <div>
             <ion-list>
                 <li class="item item-input item-stacked-label">
-                    <textarea type="text" placeholder="Enter your title here..." name="title" rows="2" ng-model="post.title" required></textarea>
+                    <textarea type="text" placeholder="Enter your title here..." name="title" rows="2" ng-model="post.subject" required></textarea>
                 </li>
                 <br/>
                 <br/>
