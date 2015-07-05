@@ -61,39 +61,15 @@ angular.module('starter.controllers', [])
         $scope.events=data.results;
     });
 
-
-/*
-$$hashKey: "object:19"
-content: "abababab"
-createdAt: "2015-06-11T08:49:32.733Z"
-objectId: "BLJTVgmTJt"
-updatedAt: "2015-06-11T08:49:32.733Z"
-*/
-/*
-  $scope.events = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-
-  $scope.doRefresh = function() {
-   $http.get('https://cors-test.appspot.com/test').then(function(resp) {
-    console.log('Success', resp);
-    // For JSON responses, resp.data contains the result
-    }, function(err) {
-      console.error('ERR', err);
-    // err.status will contain the status code
-    });
-  };
-
-*/  
 })
 
-.controller('EventCtrl', function($scope, $stateParams, $http) {
+.controller('EventCtrl', function($scope, $stateParams, $http, Events) {
 
+  $scope.event = {};
+
+  Events.get($stateParams.eventId).success(function(data){
+    $scope.event = data;
+  });
 
 })
 
