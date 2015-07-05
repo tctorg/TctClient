@@ -99,6 +99,18 @@ angular.module('starter.controllers', [])
     $scope.modalcomment.show();
   };
 
+  $scope.doCreateComment = function(post) {
+    console.log("doCreateComment");
+    $scope.modalcomment.hide();
+
+  };
+
+  $scope.cancelComment = function(post) {
+    console.log("cancelComment");
+    $scope.modalcomment.hide();
+  };
+
+
   $scope.createLike = function(post) {
     console.log("createLike");
     Posts.like(post.objectId);
