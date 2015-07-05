@@ -48,6 +48,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'AppCtrl'
   })
 
+  .state('login', {
+    url: "/login",
+    templateUrl: "templates/login.html",
+    controller: 'AppCtrl'
+  })
+
   .state('app.search', {
     url: "/search",
     views: {
