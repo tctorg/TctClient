@@ -1,7 +1,7 @@
 var constants = {
 	PARSE_CREDENTIALS:{
-    	APP_ID: 'xhTpJiNedJ7mmDj3LTTBUePqSVegcJHzEbh70Y0Q',
-    	REST_API_KEY:'XCfQDPODgNB1HqmaCQgKLPWGxQ0lCUxqffzzURJY'
+    	APP_ID: 'mtJACMqURNleMZ3Gy9hiRDRRGja3lvsEzEyiW7Ct',
+    	REST_API_KEY:'dtTtfaOLCSWURrTQZz1r3MaWwvqBdpFkvGpCMavJ'
 
 	},
 	baseApi : "https://api.parse.com/1/classes"

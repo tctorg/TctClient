@@ -6,7 +6,7 @@ angular.module('starter.services',[])
 .factory('Events',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
     return {
         getAll:function(){
-            return $http.get(constants.baseApi+'/Todo',{
+            return $http.get(constants.baseApi+'/Event',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -14,7 +14,7 @@ angular.module('starter.services',[])
             });
         },
         get:function(id){
-            return $http.get(constants.baseApi+'/Todo/' +id,{
+            return $http.get(constants.baseApi+'/Event/' +id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -22,7 +22,7 @@ angular.module('starter.services',[])
             });
         },
         create:function(data){
-            return $http.post(constants.baseApi+'/Todo',data,{
+            return $http.post(constants.baseApi+'/Event',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -31,7 +31,7 @@ angular.module('starter.services',[])
             });
         },
         edit:function(id,data){
-            return $http.put(constants.baseApi+'/Todo/'+id,data,{
+            return $http.put(constants.baseApi+'/Event/'+id,data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -40,7 +40,7 @@ angular.module('starter.services',[])
             });
         },
         delete:function(id){
-            return $http.delete(constants.baseApi+'/Todo/'+id,{
+            return $http.delete(constants.baseApi+'/Event/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -54,7 +54,7 @@ angular.module('starter.services',[])
 .factory('Posts',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
     return {
         getAll:function(){
-            return $http.get('https://api.parse.com/1/classes/Todo',{
+            return $http.get(constants.baseApi+'/Topic',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -62,7 +62,7 @@ angular.module('starter.services',[])
             });
         },
         get:function(id){
-            return $http.get('https://api.parse.com/1/classes/Todo/'+id,{
+            return $http.get(constants.baseApi+'/Topic/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -70,7 +70,7 @@ angular.module('starter.services',[])
             });
         },
         create:function(data){
-            return $http.post('https://api.parse.com/1/classes/Todo',data,{
+            return $http.post(constants.baseApi+'/Topic',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -79,7 +79,7 @@ angular.module('starter.services',[])
             });
         },
         edit:function(id,data){
-            return $http.put('https://api.parse.com/1/classes/Todo/'+id,data,{
+            return $http.put(constants.baseApi+'/Topic/'+id,data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -88,7 +88,7 @@ angular.module('starter.services',[])
             });
         },
         delete:function(id){
-            return $http.delete('https://api.parse.com/1/classes/Todo/'+id,{
+            return $http.delete(constants.baseApi+'/Topic/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
