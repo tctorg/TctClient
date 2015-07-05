@@ -20,30 +20,29 @@
     <ion-content>
       <ion-list>
 
-      <ion-item>
-        <div>
-          <img src="http://ionicframework.com/img/docs/mcfly.jpg">            
-          <h4>User Name</h4>
-          <p>xxxx@autodesk.com</p>
-        </div>
-        <div>
-          <p>Level         |||||| | | | | | | | | |</p>
-        </div>
+        <ion-item>
+          <div>
+            <img src="http://ionicframework.com/img/docs/mcfly.jpg">            
+            <h4>User Name</h4>
+            <p>xxxx@autodesk.com</p>
+          </div>
+          <div>
+            <p>Level         |||||| | | | | | | | | |</p>
+          </div>
 
-      </ion-item>
+        </ion-item>
 
-        <ion-item menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
         <ion-item menu-close href="#/app/posts">
           Forums
         </ion-item>
         <ion-item menu-close href="#/app/events">
           Events
         </ion-item>
+
+        <ion-item menu-close ng-click="logout()">
+          Logout
+        </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-side-menu>

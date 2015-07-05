@@ -5,7 +5,25 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
 
 
-  // Open the login modal
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/logout.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.logoutModal = modal;
+  });
+
+  $scope.closeLogout = function() {
+    $scope.logoutModal.hide();
+  };
+
+  $scope.logout = function() {
+    $scope.logoutModal.show();
+  };
+
+  $scope.doLogout = function() {
+    $state.go("landing");
+  };
+
   $scope.login = function() {
     $state.go("login");
   };
