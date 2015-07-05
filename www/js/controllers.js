@@ -116,6 +116,12 @@ angular.module('starter.controllers', [])
 
   $scope.post={};
 
+
+  Posts.get($stateParams.postId).success(function(data){
+    $scope.post = data;
+  });
+
+
   $scope.doCreatePost = function() {
     console.log("onCreatePost" + $scope.post.subject);
 
