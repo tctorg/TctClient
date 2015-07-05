@@ -111,7 +111,7 @@ angular.module('starter.services',[])
     REST_API_KEY:'XCfQDPODgNB1HqmaCQgKLPWGxQ0lCUxqffzzURJY'
 })
 
-.factory('Users',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
+.factory('User',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
     return {
         getAll:function(){
             return $http.get('https://api.parse.com/1/classes/Todo',{
