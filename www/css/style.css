@@ -88,7 +88,7 @@
   margin-right: 10pt;
 }
 
-.tct-landing{
+.tct-landing-page{
 	background-image: url("../img/image_splash_1920x1080.png");
 }
 
@@ -97,6 +97,7 @@
   width: 80%;
   margin: auto;
 }
+
 .tct-signin-placeholder{
   height: 200px;
   width: 80%;
