@@ -107,6 +107,12 @@
 	width: 10em;
 }
 
+.button-tct {
+  border-color: rgba(243, 221, 39, 1);
+  background-color: rgba(243, 221, 39, 1);
+  color: #000;
+}
+
 .signin-div{
 	margin-top: 150;
 }
