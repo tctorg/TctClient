@@ -97,6 +97,12 @@
   width: 80%;
   margin: auto;
 }
+.tct-signin-placeholder{
+  height: 200px;
+  width: 80%;
+  margin: auto;
+}
+
 .tct-div-login-signin{
   text-align: center;
   padding: 1em 0;
