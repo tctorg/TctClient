@@ -120,6 +120,13 @@ angular.module('starter.controllers', [])
     console.log("gotoPostDetail");
     $state.go('#/app/posts/' + post.objectId);
   };
+
+  $scope.onRegisterEvent = function(post) {
+    console.log("onRegisterEvent");
+//    $state.go('#/app/posts/' + post.objectId);
+
+  };
+  
   
 
 })
