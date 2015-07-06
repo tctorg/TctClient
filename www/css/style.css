@@ -92,8 +92,19 @@
 	background-image: url("../img/image_splash_1920x1080.png");
 }
 
+.tct-landing-placeholder{
+  height: 500px;
+  width: 80%;
+  margin: auto;
+}
+.tct-div-login-signin{
+  text-align: center;
+  padding: 1em 0;
+  clear: both;
+}
+
 .tct-button-signin{
-	
+	width: 10em;
 }
 
 .signin-div{
