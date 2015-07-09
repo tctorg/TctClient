@@ -2,7 +2,7 @@
 .divheader{
 	position: relative;
 	height: 200pt;
-	background-image: url("../img/event_banner.png");
+	background-image: url("../img/event_banner.png"); 
 	color: white;
 }
 .divheader h1,h2,h3,h4,h5{
@@ -89,7 +89,7 @@
 }
 
 .tct-landing-page{
-	background-image: url("../img/image_splash_1920x1080.png");
+	/*background-image: url("../img/image_splash_1920x1080.png");*/
 }
 
 .tct-landing-placeholder{
